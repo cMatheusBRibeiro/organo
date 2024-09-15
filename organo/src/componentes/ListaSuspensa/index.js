@@ -1,7 +1,7 @@
 import "./ListaSuspensa.css";
 
 const ListaSuspensa = (props) => {
-    const itens = props.itens.map((item) => <option>{item}</option>);
+    const itens = props.itens.map((item) => <option key={item}>{item}</option>);
 
     return (
         <div className="lista-suspensa">
