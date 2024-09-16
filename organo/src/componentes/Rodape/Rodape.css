@@ -1,25 +1,26 @@
-.rodape {
+footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #6278F7;
     background-image: url("/public/imagens/fundo.png");
     background-position: center;
     align-items: center;
-    padding: 75px 0;
+    padding: 80px;
 }
 
-.rodape .redes-sociais {
+footer .redes-sociais ul {
+    list-style-type: none;
     display: flex;
     justify-content: space-between;
     width: 160px;
 }
 
-.rodape .redes-sociais img {
+footer .redes-sociais img {
     width: 32px;
     height: 32px;
 }
 
-.rodape h3 {
+footer p {
     color: #FFF;
     font-size: 20px;
     font-weight: normal;
