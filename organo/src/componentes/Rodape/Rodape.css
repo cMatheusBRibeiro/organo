@@ -1,0 +1,26 @@
+.rodape {
+    display: flex;
+    justify-content: space-around;
+    background-color: #6278F7;
+    background-image: url("/public/imagens/fundo.png");
+    background-position: center;
+    align-items: center;
+    padding: 75px 0;
+}
+
+.rodape .redes-sociais {
+    display: flex;
+    justify-content: space-between;
+    width: 160px;
+}
+
+.rodape .redes-sociais img {
+    width: 32px;
+    height: 32px;
+}
+
+.rodape h3 {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: normal;
+}
