@@ -3,6 +3,7 @@ import Banner from './componentes/Banner';
 import Formulario from "./componentes/Formulario";
 import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const times = [
@@ -66,6 +67,7 @@ function App() {
         />
       )}
       <Rodape/>
+      <SpeedInsights/>
     </div>
   );
 }
