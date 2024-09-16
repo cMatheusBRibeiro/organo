@@ -54,7 +54,7 @@ function App() {
       <Formulario
         aoColaboradorCadastrado={(colaborador) => aoColaboradorCadastrado(colaborador)}
       />
-      {times.map((time) => <Time nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} />)}
+      {times.map((time) => <Time key={time.nome} nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} />)}
     </div>
   );
 }
