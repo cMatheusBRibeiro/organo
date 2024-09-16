@@ -18,6 +18,14 @@ const Formulario = (props) => {
             imagem,
             time
         });
+        reiniciarFormulario();
+    }
+
+    const reiniciarFormulario = () => {
+        setNome("");
+        setCargo("");
+        setImagem("");
+        setTime("");
     }
 
     return (
