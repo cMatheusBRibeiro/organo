@@ -12,6 +12,7 @@ const Time = ({nome, corPrimaria, corSecundaria, colaboradores}) => {
             <div className="colaboradores">
                 {colaboradores.map((colaborador) =>
                     <Colaborador
+                        key={colaborador.nome}
                         nome={colaborador.nome}
                         cargo={colaborador.cargo}
                         imagem={colaborador.imagem}
