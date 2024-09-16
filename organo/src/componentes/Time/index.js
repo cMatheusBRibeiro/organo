@@ -6,6 +6,7 @@ const Time = ({nome, corPrimaria, corSecundaria, colaboradores}) => {
     const cssNomeDoTime = { borderColor: corPrimaria };
 
     return (
+        colaboradores.length > 0 &&
         <section className="time" style={cssSecaoDoTime}>
             <h3 style={cssNomeDoTime}>{nome}</h3>
             <div className="colaboradores">
