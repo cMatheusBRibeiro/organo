@@ -8,7 +8,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import Mock from "./Mock";
 
 function App() {
-  const times = [
+  const [times, setTimes] = useState([
     {
       nome: "Programação",
       corPrimaria: "#57C278",
@@ -44,7 +44,7 @@ function App() {
       corPrimaria: "#FF8A29",
       corSecundaria: "#FFEEDF"
     },
-  ];
+  ]);
 
   const [colaboradores, setColaboradores] = useState(Mock(times));
 
@@ -54,6 +54,15 @@ function App() {
 
   const aoDeletarColaborador = (colaborador) => {
     console.log(colaborador);
+  }
+
+  const mudarCorSecundariaDoTime = (cor, nome) => {
+    setTimes(times.map((time) => {
+      if (time.nome === nome) {
+        time.corSecundaria = cor;
+      }
+      return time;
+    }));
   }
 
   return (
@@ -71,6 +80,7 @@ function App() {
             time={time}
             colaboradores={colaboradores.filter((colaborador) => colaborador.time === time.nome)}
             aoDeletarColaborador={(colaborador) => aoDeletarColaborador(colaborador)}
+            mudarCorSecundaria={(cor, nome) => mudarCorSecundariaDoTime(cor, nome)}
           />
         )}
       </section>
