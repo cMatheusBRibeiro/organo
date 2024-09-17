@@ -1,16 +1,17 @@
+import hexToRgba from "hex-to-rgba";
 import Colaborador from "../Colaborador";
 import "./Time.css";
 
-const Time = ({ time, colaboradores, aoDeletarColaborador, mudarCorSecundaria }) => {
-    const cssSecaoDoTime = { backgroundColor: time.corSecundaria };
-    const cssNomeDoTime = { borderColor: time.corPrimaria };
+const Time = ({ time, colaboradores, aoDeletarColaborador, mudarCor }) => {
+    const cssSecaoDoTime = { backgroundColor: hexToRgba(time.cor, "0.6") };
+    const cssNomeDoTime = { borderColor: time.cor };
 
     return (
         colaboradores.length > 0 &&
         <section className="time" style={cssSecaoDoTime}>
             <input
-                onChange={(evento) => mudarCorSecundaria(evento.target.value, time.nome)}
-                value={time.corSecundaria}
+                onChange={(evento) => mudarCor(evento.target.value, time.nome)}
+                value={time.cor}
                 type="color"
                 className="input-cor"
             />
@@ -20,8 +21,7 @@ const Time = ({ time, colaboradores, aoDeletarColaborador, mudarCorSecundaria })
                     <Colaborador
                         key={colaborador.nome}
                         colaborador={colaborador}
-                        corDeFundo={time.corPrimaria}
-                        corSecundariaDoTime={time.corSecundaria}
+                        corDoTime={time.cor}
                         aoDeletar={aoDeletarColaborador}
                     />
                 )}
