@@ -6,7 +6,7 @@ const Colaborador = ({ colaborador, corDoTime, aoDeletar }) => {
 
     return (
         <div className="colaborador">
-            <BotaoFechar cor={corDoTime} classe="deletar" aoClicar={() => aoDeletar(colaborador)}/>
+            <BotaoFechar cor={corDoTime} classe="deletar" aoClicar={() => aoDeletar(colaborador.id)}/>
             <div className="cabecalho" style={cssCabecalho}>
                 <img src={colaborador.imagem} alt={colaborador.nome}/>
             </div>
