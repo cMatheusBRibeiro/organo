@@ -1,5 +1,5 @@
 import "./Formulario.css";
-import CampoTexto from "../CampoTexto";
+import Campo from "../Campo";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 import { useState } from "react";
@@ -52,21 +52,21 @@ const Formulario = ({ times, aoColaboradorCadastrado, aoTimeCadastrado }) => {
         <section className="formulario">
             <form onSubmit={(evento) => aoSalvar(evento)}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <CampoTexto
+                <Campo
                     label="Nome"
                     placeholder="Digite seu nome"
                     valor={nome}
                     aoAlterado={(valor) => setNome(valor)}
                     obrigatorio
                 />
-                <CampoTexto
+                <Campo
                     label="Cargo"
                     placeholder="Digite seu cargo"
                     valor={cargo}
                     aoAlterado={(valor) => setCargo(valor)}
                     obrigatorio
                 />
-                <CampoTexto
+                <Campo
                     label="Imagem"
                     placeholder="Digite o endereço da imagem"
                     valor={imagem}
@@ -83,15 +83,16 @@ const Formulario = ({ times, aoColaboradorCadastrado, aoTimeCadastrado }) => {
             </form>
             <form onSubmit={(evento) => aoSalvarTime(evento)}>
                 <h2>Preencha os dados para criar o time</h2>
-                <CampoTexto
+                <Campo
                     label="Nome"
                     placeholder="Digite o nome do time"
                     valor={nomeTime}
                     aoAlterado={(valor) => setNomeTime(valor)}
                     obrigatorio
                 />
-                <CampoTexto
+                <Campo
                     label="Cor"
+                    type="color"
                     placeholder="Digite a cor do time"
                     valor={corTime}
                     aoAlterado={(valor) => setCorTime(valor)}
