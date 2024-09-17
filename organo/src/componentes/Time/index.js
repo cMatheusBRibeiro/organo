@@ -15,6 +15,7 @@ const Time = ({time, colaboradores, aoDeletarColaborador}) => {
                         key={colaborador.nome}
                         colaborador={colaborador}
                         corDeFundo={time.corPrimaria}
+                        corSecundariaDoTime={time.corSecundaria}
                         aoDeletar={aoDeletarColaborador}
                     />
                 )}
