@@ -57,6 +57,10 @@ function App() {
     setColaboradores(colaboradores.filter((colaborador) => colaborador.id !== idColaborador));
   }
 
+  const aoTimeCadastrado = (time) => {
+    setTimes([...times, time]);
+  }
+
   const mudarCorDoTime = (cor, id) => {
     setTimes(times.map((time) => {
       if (time.id === id) {
@@ -72,6 +76,7 @@ function App() {
       <Formulario
         times={times.map((time) => time.nome)}
         aoColaboradorCadastrado={(colaborador) => aoColaboradorCadastrado(colaborador)}
+        aoTimeCadastrado={(time) => aoTimeCadastrado(time)}
       />
       <section className="times">
         <h1>Minha Organização</h1>
