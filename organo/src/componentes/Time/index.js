@@ -10,7 +10,7 @@ const Time = ({ time, colaboradores, aoDeletarColaborador, mudarCor }) => {
         colaboradores.length > 0 &&
         <section className="time" style={cssSecaoDoTime}>
             <input
-                onChange={(evento) => mudarCor(evento.target.value, time.nome)}
+                onChange={(evento) => mudarCor(evento.target.value, time.id)}
                 value={time.cor}
                 type="color"
                 className="input-cor"

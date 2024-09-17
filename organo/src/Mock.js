@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 const Mock = (times) => {
     const dadosMockados = [];
     const colaboradores = [
@@ -22,6 +24,7 @@ const Mock = (times) => {
         colaboradores.forEach((colaborador) => {
             dadosMockados.push({
                 ...colaborador,
+                id: uuidv4(),
                 time: time.nome
             });
         });
