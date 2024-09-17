@@ -5,6 +5,7 @@ import Formulario from "./componentes/Formulario";
 import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import Mock from "./Mock";
 
 function App() {
   const times = [
@@ -45,7 +46,7 @@ function App() {
     },
   ];
 
-  const [colaboradores, setColaboradores] = useState([]);
+  const [colaboradores, setColaboradores] = useState(Mock(times));
 
   const aoColaboradorCadastrado = (colaborador) => {
     setColaboradores([...colaboradores, colaborador]);
