@@ -1,6 +1,6 @@
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import BotaoFechar from "../BotaoFechar";
 import "./Colaborador.css";
+import BotaoFavoritar from "../BotaoFavoritar";
 
 const Colaborador = ({ colaborador, corDoTime, aoDeletar, aoFavoritar }) => {
     const cssCabecalho = { backgroundColor: corDoTime };
@@ -8,11 +8,7 @@ const Colaborador = ({ colaborador, corDoTime, aoDeletar, aoFavoritar }) => {
     const favoritar = () => {
         aoFavoritar(colaborador.id);
     }
-    const propsFavoritar = {
-        size: 25,
-        onClick: () => favoritar(),
-        className: "favoritar"
-    }
+    
 
     return (
         <div className="colaborador">
@@ -23,11 +19,7 @@ const Colaborador = ({ colaborador, corDoTime, aoDeletar, aoFavoritar }) => {
             <div className="rodape">
                 <h4>{colaborador.nome}</h4>
                 <h5>{colaborador.cargo}</h5>
-                {
-                    colaborador.favorito
-                        ? <AiFillHeart {...propsFavoritar} color="#FF0000" />
-                        : <AiOutlineHeart {...propsFavoritar} />
-                }
+                <BotaoFavoritar favorito={colaborador.favorito} aoFavoritar={favoritar} />
             </div>
         </div>
     );
