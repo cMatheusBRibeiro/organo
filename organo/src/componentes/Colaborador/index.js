@@ -6,7 +6,7 @@ const Colaborador = ({ colaborador, corDoTime, aoDeletar, aoFavoritar }) => {
     const cssCabecalho = { backgroundColor: corDoTime };
 
     const favoritarColaborador = () => {
-        aoFavoritar(colaborador.id);
+        aoFavoritar(colaborador);
     }
 
     return (

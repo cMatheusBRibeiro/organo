@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Banner from './componentes/Banner';
 import Formulario from "./componentes/Formulario";
 import Time from './componentes/Time';
@@ -10,67 +10,65 @@ import { v4 as uuidv4 } from "uuid";
 import { MdOutlineLibraryAdd } from "react-icons/md";
 
 function App() {
-  const [times, setTimes] = useState([
-    {
-      id: uuidv4(),
-      nome: "Programação",
-      cor: "#57C278"
-    },
-    {
-      id: uuidv4(),
-      nome: "Front-End",
-      cor: "#82CFFA"
-    },
-    {
-      id: uuidv4(),
-      nome: "Data Science",
-      cor: "#A6D157"
-    },
-    {
-      id: uuidv4(),
-      nome: "Devops",
-      cor: "#E06B69"
-    },
-    {
-      id: uuidv4(),
-      nome: "UX e Design",
-      cor: "#DB6EBF"
-    },
-    {
-      id: uuidv4(),
-      nome: "Mobile",
-      cor: "#FFBA05"
-    },
-    {
-      id: uuidv4(),
-      nome: "Inovação e Gestão",
-      cor: "#FF8A29"
-    },
-  ]);
+  const [times, setTimes] = useState([]);
 
-  const [colaboradores, setColaboradores] = useState(Mock(times));
+  const [colaboradores, setColaboradores] = useState([]);
 
   const [formularioAberto, setFormularioAberto] = useState(true);
 
   const aoColaboradorCadastrado = (colaborador) => {
-    setColaboradores([...colaboradores, colaborador]);
+    const formNovoColaborador = {
+      id: uuidv4(),
+      nome: colaborador.nome,
+      cargo: colaborador.cargo,
+      imagem: colaborador.imagem,
+      time: colaborador.time,
+      favorito: false
+    };
+
+    const config = {
+      method: "POST",
+      body: JSON.stringify(formNovoColaborador)
+    };
+
+    fetch("http://localhost:8080/colaboradores", config)
+      .then(() => buscarColaboradores());
   }
 
   const aoDeletarColaborador = (idColaborador) => {
-    setColaboradores(colaboradores.filter((colaborador) => colaborador.id !== idColaborador));
+    const config = {
+      method: "DELETE"
+    };
+    fetch(`http://localhost:8080/colaboradores/${idColaborador}`, config)
+      .then(() => buscarColaboradores());
   }
 
-  const resolverFavoritarColaborador = (idColaborador) => {
-    setColaboradores(colaboradores.map((colaborador) => {
-      if (colaborador.id === idColaborador) {
-        colaborador.favorito = !colaborador.favorito;
-      }
-      return colaborador;
-    }));
+  const resolverFavoritarColaborador = (colaborador) => {
+    colaborador.favorito = !colaborador.favorito;
+
+    const config = {
+      method: "PUT",
+      body: JSON.stringify(colaborador)
+    };
+
+    fetch(`http://localhost:8080/colaboradores/${colaborador.id}`, config)
+      .then(() => buscarColaboradores());
   }
 
   const aoTimeCadastrado = (time) => {
-    setTimes([...times, time]);
+    const formNovoTime = {
+      id: uuidv4(),
+      nome: time.nome,
+      cor: time.cor
+    };
+
+    const config = {
+      method: "POST",
+      body: JSON.stringify(formNovoTime)
+    };
+
+    fetch("http://localhost:8080/times", config)
+      .then(() => buscarTimes());
   }
 
   const mudarCorDoTime = (cor, id) => {
@@ -85,6 +83,27 @@ function App() {
   const alterarApresentacaoDosFormularios = () => {
     setFormularioAberto(!formularioAberto);
   }
+
+  const buscarTimes = () => {
+    fetch("http://localhost:8080/times")
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        setTimes(dados);
+      });
+  }
+
+  const buscarColaboradores = () => {
+    fetch("http://localhost:8080/colaboradores")
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        setColaboradores(dados);
+      });
+  }
+
+  useEffect(() => {
+    buscarTimes();
+    buscarColaboradores();
+  }, []);
 
   return (
     <div className="App">
@@ -115,7 +134,7 @@ function App() {
             time={time}
             colaboradores={colaboradores.filter((colaborador) => colaborador.time === time.nome)}
             aoDeletarColaborador={(colaborador) => aoDeletarColaborador(colaborador)}
-            aoFavoritarColaborador={(id) => resolverFavoritarColaborador(id)}
+            aoFavoritarColaborador={(colaborador) => resolverFavoritarColaborador(colaborador)}
             mudarCor={(cor, nome) => mudarCorDoTime(cor, nome)}
           />
         )}
