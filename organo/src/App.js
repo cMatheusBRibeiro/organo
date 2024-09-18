@@ -57,6 +57,15 @@ function App() {
     setColaboradores(colaboradores.filter((colaborador) => colaborador.id !== idColaborador));
   }
 
+  const resolverFavoritarColaborador = (idColaborador) => {
+    setColaboradores(colaboradores.map((colaborador) => {
+      if (colaborador.id === idColaborador) {
+        colaborador.favorito = !colaborador.favorito;
+      }
+      return colaborador;
+    }));
+  }
+
   const aoTimeCadastrado = (time) => {
     setTimes([...times, time]);
   }
@@ -86,6 +95,7 @@ function App() {
             time={time}
             colaboradores={colaboradores.filter((colaborador) => colaborador.time === time.nome)}
             aoDeletarColaborador={(colaborador) => aoDeletarColaborador(colaborador)}
+            aoFavoritarColaborador={(id) => resolverFavoritarColaborador(id)}
             mudarCor={(cor, nome) => mudarCorDoTime(cor, nome)}
           />
         )}

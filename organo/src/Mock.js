@@ -6,17 +6,20 @@ const Mock = (times) => {
         {
             nome: "Matheus Braga Ribeiro",
             cargo: "Desenvolvedor Sênior",
-            imagem: "https://github.com/cMatheusBRibeiro.png"
+            imagem: "https://github.com/cMatheusBRibeiro.png",
+            favorito: false
         },
         {
             nome: "Hamilton Zanini",
             cargo: "Desenvolvedor Sênior",
-            imagem: "https://github.com/hrszanini.png"
+            imagem: "https://github.com/hrszanini.png",
+            favorito: false
         },
         {
             nome: "Thiago",
             cargo: "Desenvolvedor Sênior",
-            imagem: "https://github.com/devthiagobr.png"
+            imagem: "https://github.com/devthiagobr.png",
+            favorito: false
         },
     ]
 
