@@ -7,6 +7,7 @@ import Rodape from './componentes/Rodape';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Mock from "./Mock";
 import { v4 as uuidv4 } from "uuid";
+import { MdOutlineLibraryAdd } from "react-icons/md";
 
 function App() {
   const [times, setTimes] = useState([
@@ -49,6 +50,8 @@ function App() {
 
   const [colaboradores, setColaboradores] = useState(Mock(times));
 
+  const [formularioAberto, setFormularioAberto] = useState(true);
+
   const aoColaboradorCadastrado = (colaborador) => {
     setColaboradores([...colaboradores, colaborador]);
   }
@@ -79,16 +82,33 @@ function App() {
     }));
   }
 
+  const alterarApresentacaoDosFormularios = () => {
+    setFormularioAberto(!formularioAberto);
+  }
+
   return (
     <div className="App">
       <Banner/>
-      <Formulario
-        times={times.map((time) => time.nome)}
-        aoColaboradorCadastrado={(colaborador) => aoColaboradorCadastrado(colaborador)}
-        aoTimeCadastrado={(time) => aoTimeCadastrado(time)}
-      />
+      {
+        formularioAberto &&
+        <Formulario
+          times={times.map((time) => time.nome)}
+          aoColaboradorCadastrado={(colaborador) => aoColaboradorCadastrado(colaborador)}
+          aoTimeCadastrado={(time) => aoTimeCadastrado(time)}
+        />
+      }
       <section className="times">
-        <h1>Minha Organização</h1>
+        <div class="cabecalho">
+          <h1>Minha Organização</h1>
+          <button
+            className="alternador-apresentacao-formulario"
+            onClick={() => alterarApresentacaoDosFormularios()}
+          >
+            <MdOutlineLibraryAdd
+              size={35}
+            />
+          </button>
+        </div>
         {times.map((time) =>
           <Time
             key={time.nome}

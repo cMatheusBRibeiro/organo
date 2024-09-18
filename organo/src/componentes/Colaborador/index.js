@@ -5,10 +5,9 @@ import BotaoFavoritar from "../BotaoFavoritar";
 const Colaborador = ({ colaborador, corDoTime, aoDeletar, aoFavoritar }) => {
     const cssCabecalho = { backgroundColor: corDoTime };
 
-    const favoritar = () => {
+    const favoritarColaborador = () => {
         aoFavoritar(colaborador.id);
     }
-    
 
     return (
         <div className="colaborador">
@@ -19,7 +18,10 @@ const Colaborador = ({ colaborador, corDoTime, aoDeletar, aoFavoritar }) => {
             <div className="rodape">
                 <h4>{colaborador.nome}</h4>
                 <h5>{colaborador.cargo}</h5>
-                <BotaoFavoritar favorito={colaborador.favorito} aoFavoritar={favoritar} />
+                <BotaoFavoritar
+                    favorito={colaborador.favorito}
+                    aoFavoritar={() => favoritarColaborador()}
+                />
             </div>
         </div>
     );
